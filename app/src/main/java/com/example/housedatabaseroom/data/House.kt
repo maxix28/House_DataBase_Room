@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class House(
     @PrimaryKey(autoGenerate = true)
     var id : Int =0,
+    var Name: String,
     var Area : Int ,
     var Population : Int ,
     var AwayFromCenter: Int
