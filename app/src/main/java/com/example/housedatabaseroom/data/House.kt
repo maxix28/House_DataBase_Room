@@ -3,12 +3,12 @@ package com.example.housedatabaseroom.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "HouseBase")
 data class House(
     @PrimaryKey(autoGenerate = true)
-    var id : Int =0,
-    var Name: String,
-    var Area : Int ,
-    var Population : Int ,
-    var AwayFromCenter: Int
+    val id : Int =0,
+    val Name: String,
+    val Area : Int ,
+    val Population : Int ,
+    val AwayFromCenter: Int
 )
