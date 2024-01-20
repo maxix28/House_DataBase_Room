@@ -22,10 +22,7 @@ data class HomeAddUIState(
 )
 class AddScreenViewModel( private val houseRepository: HouseRepository): ViewModel() {
     var UiState by mutableStateOf(HomeAddUIState())
-    var EmptyName by mutableStateOf( UiState.Name.isNotEmpty())
-    var EmptyArea by mutableStateOf( UiState.Area.isNotEmpty())
-    var EmptyPopulation = UiState.Population.isNotEmpty()
-    var EmptyAwayFromCenter = UiState.AwayFromCenter.isNotEmpty()
+
 
     fun setName( it : String){
         val current = UiState

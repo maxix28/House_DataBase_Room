@@ -9,41 +9,55 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.pointer.PointerIcon.Companion.Text
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.housedatabaseroom.data.House
-
-
+import kotlinx.coroutines.launch
 
 
 @Composable
 fun mainScreen( showScreenViewModel: ShowScreenViewModel= viewModel(factory = ShowScreenViewModel.Factory),modifier: Modifier= Modifier){
     val ShowUIState = showScreenViewModel.UiState.collectAsState()
-    ShowHouse(ShowUIState.value.houseList)
+    val coroutineScope = rememberCoroutineScope()
+
+    ShowHouse(ShowUIState.value.houseList, onClick ={
+    coroutineScope.launch{
+        showScreenViewModel.deleteHouse(it)
+    }
+    })
 }
 @Composable
-fun ShowHouse(HouseList : List<House>,modifier: Modifier = Modifier){
+fun ShowHouse(HouseList: List<House>, modifier: Modifier = Modifier, onClick:(House)-> Unit){
 
 LazyColumn(modifier = modifier){
 items(HouseList){house->
-    ShowOneHouse(house)
+    ShowOneHouse(house, onClick= {onClick(house)})
 }
 }
 
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ShowOneHouse(house: House,modifier: Modifier = Modifier){
+fun ShowOneHouse(house: House,modifier: Modifier = Modifier, onClick : (House)-> Unit){
+val coroutineScope = rememberCoroutineScope()
+    Card(modifier = modifier.padding(6.dp),
+        onClick = {
+            coroutineScope.launch{
+                onClick(house)
+            }
 
-    Card(modifier = modifier.padding(6.dp)){
+
+        }){
         Column(modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 8.dp)){
@@ -91,28 +105,5 @@ fun HousePreview(){
 //
 //
 //    }
-    ShowHouse(listOf(House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-        House(1, "Lvivian", 123,234,23),
-
-
-    ))
 
 }

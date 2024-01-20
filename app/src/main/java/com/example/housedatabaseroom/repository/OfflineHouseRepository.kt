@@ -6,6 +6,8 @@ import kotlinx.coroutines.flow.Flow
 
 class OfflineHouseRepository( private val houseDao: HouseDao): HouseRepository {
     override suspend fun AddHouse(house: House) = houseDao.AddHouse(house)
+    override suspend fun DeleteHouse(house: House) =houseDao.DeleteHouse(house)
 
+    override fun getHouseByArea(): Flow<List<House>> = houseDao.getHouseByArea()
     override fun getItemByParam(PARAM: String): Flow<List<House>> =houseDao.getItemByParam(PARAM)
 }

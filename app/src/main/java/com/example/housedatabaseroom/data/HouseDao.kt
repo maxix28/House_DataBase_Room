@@ -28,8 +28,14 @@ interface HouseDao{
 
     @Insert
     suspend fun AddHouse(house: House)
+@Delete
+suspend fun DeleteHouse(house:House)
 
-    @Query("SELECT * FROM HouseBase ORDER BY :PARAM Asc ")
+
+    @Query("select * from HouseBase order by area  ASC")
+    fun getHouseByArea( ): Flow<List<House>>
+
+    @Query("select * from HouseBase order by :PARAM  ASC")
     fun getItemByParam( PARAM : String): Flow<List<House>>
 
 
