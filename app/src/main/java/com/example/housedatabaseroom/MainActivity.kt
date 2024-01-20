@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.housedatabaseroom.ui.screen.AddHouse
+import com.example.housedatabaseroom.ui.screen.mainScreen
 import com.example.housedatabaseroom.ui.theme.HouseDataBaseRoomTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AddHouse()
+                    mainScreen()
                 }
             }
         }
