@@ -45,6 +45,7 @@ class AddScreenViewModel( private val houseRepository: HouseRepository): ViewMod
     }
 suspend fun addHouse(){
     houseRepository.AddHouse(UiState.toHouse())
+    UiState = HomeAddUIState()
 }
     companion object{
         val Factory = viewModelFactory {

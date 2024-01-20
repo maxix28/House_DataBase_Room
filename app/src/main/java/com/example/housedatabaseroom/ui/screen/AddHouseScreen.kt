@@ -116,7 +116,12 @@ fun AddHouse(modifier: Modifier = Modifier, addViewModel : AddScreenViewModel= v
                 }
                  },
             modifier = modifier.fillMaxWidth(),
-            enabled = true
+            enabled = !(
+                    addViewModel.UiState.AwayFromCenter.isEmpty()||
+                    addViewModel.UiState.Area.isEmpty()||
+                    addViewModel.UiState.Name.isEmpty()||
+                    addViewModel.UiState.Population.isEmpty()
+                    )
         ) {
             Text("Save House")
         }
