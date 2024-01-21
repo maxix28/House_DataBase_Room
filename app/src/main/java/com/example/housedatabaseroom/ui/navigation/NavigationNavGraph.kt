@@ -9,6 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.housedatabaseroom.ui.screen.AddDestination
 import com.example.housedatabaseroom.ui.screen.AddHouse
+import com.example.housedatabaseroom.ui.screen.EditDestination
+import com.example.housedatabaseroom.ui.screen.EditScreen
 import com.example.housedatabaseroom.ui.screen.HomeDestination
 import com.example.housedatabaseroom.ui.screen.mainScreen
 
@@ -27,13 +29,17 @@ NavHost(
 {
     composable(route = HomeDestination.route) {
         mainScreen(
-         onEdit = {},
+         onEdit = {navController.navigate(EditDestination.route)},
             onAdd = {navController.navigate(AddDestination.route)}
         )
     }
     composable(route = AddDestination.route) {
         AddHouse()
     }
+    composable(route = EditDestination.route) {
+        EditScreen()
+    }
+
 
 }
 }
